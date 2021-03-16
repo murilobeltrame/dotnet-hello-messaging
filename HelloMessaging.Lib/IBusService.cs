@@ -4,6 +4,6 @@ namespace HelloMessaging.Lib
 {
     public interface IBusService
     {
-        Task SendMessageAsync<T>(string queueName, T message);
+        IBusClient Client(string queuename);
     }
 }

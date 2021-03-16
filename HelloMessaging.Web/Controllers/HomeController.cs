@@ -25,7 +25,7 @@ namespace HelloMessaging.Web.Controllers
 
         [HttpPost]
         public async Task<IActionResult> Index(ChatMessage chatMessage) {
-            await _busService.SendMessageAsync("chatting", chatMessage);
+            await _busService.Client("chatting").SendMessageAsync(chatMessage);
             return View();
         }
 
