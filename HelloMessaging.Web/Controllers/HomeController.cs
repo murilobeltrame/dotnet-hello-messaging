@@ -1,25 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using HelloMessaging.Web.Models;
+using HelloMessaging.Lib;
+using System.Threading.Tasks;
 
 namespace HelloMessaging.Web.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IBusService _busService;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(ILogger<HomeController> logger, IBusService busService)
         {
             _logger = logger;
+            _busService = busService;
         }
 
         public IActionResult Index()
         {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Index(ChatMessage chatMessage) {
+            await _busService.SendMessageAsync("chatting", chatMessage);
             return View();
         }
 
