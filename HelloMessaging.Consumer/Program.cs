@@ -1,16 +1,18 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.Extensions.Hosting;
 
 namespace HelloMessaging.Consumer
 {
     class Program
     {
-        const string connectionString = "";
-        const string queueMessage = "";
-
+        protected Program() {}
+        
         static async Task Main(string[] args)
         {
-            
+            using var host = CreateHostBuilder(args).Build();
+            await host.RunAsync();
         }
+
+        static IHostBuilder CreateHostBuilder(string[] args) => Host.CreateDefaultBuilder(args);
     }
 }
