@@ -4,6 +4,7 @@ using MassTransit;
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using HelloMessaging.Domain;
+using Serilog;
 
 namespace HelloMessaging.Producer
 {
@@ -36,6 +37,14 @@ namespace HelloMessaging.Producer
 
         static IHostBuilder CreateHostBuilder(string[] args) => Host
             .CreateDefaultBuilder(args)
+            .UseSerilog((host, log) =>
+            {
+                if (host.HostingEnvironment.IsProduction())
+                    log.MinimumLevel.Information();
+                else
+                    log.MinimumLevel.Debug();
+                log.WriteTo.Console();
+            })
             .ConfigureServices(services =>
             {
                 services

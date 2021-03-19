@@ -4,6 +4,7 @@ using HelloMessaging.Domain;
 using MassTransit;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Serilog;
 
 namespace HelloMessaging.Consumer
 {
@@ -22,6 +23,14 @@ namespace HelloMessaging.Consumer
 
         static IHostBuilder CreateHostBuilder(string[] args) => Host
             .CreateDefaultBuilder(args)
+            .UseSerilog((host, log) =>
+            {
+                if (host.HostingEnvironment.IsProduction())
+                    log.MinimumLevel.Information();
+                else
+                    log.MinimumLevel.Debug();
+                log.WriteTo.Console();
+            })
             .ConfigureServices(services =>
             {
                 services
@@ -49,6 +58,8 @@ namespace HelloMessaging.Consumer
 
         public Task Consume(ConsumeContext<ChatMessage> context)
         {
+            var messageText = context.Message.Text;
+            if (messageText.Contains("error", StringComparison.InvariantCultureIgnoreCase)) throw new Exception(messageText);
             _logger.LogInformation($"Chatty said: '{context.Message.Text}'");
             return Task.CompletedTask;
         }
