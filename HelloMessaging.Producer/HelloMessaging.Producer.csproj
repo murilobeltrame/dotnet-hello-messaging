@@ -8,6 +8,12 @@
   <ItemGroup>
     <PackageReference Include="MassTransit.RabbitMQ" Version="7.1.6" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="5.0.0" />
+    <PackageReference Include="MassTransit" Version="7.1.6" />
+    <PackageReference Include="MassTransit.Extensions.DependencyInjection" Version="7.1.6" />
+    <PackageReference Include="MassTransit.AspNetCore" Version="7.1.6" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\HelloMessaging.Domain\HelloMessaging.Domain.csproj" />
+  </ItemGroup>
 </Project>

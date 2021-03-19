@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloMessaging.Consumer", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloMessaging.Producer", "HelloMessaging.Producer\HelloMessaging.Producer.csproj", "{9A281CD2-8BD8-4709-AFF0-36064213DEFA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HelloMessaging.Domain", "HelloMessaging.Domain\HelloMessaging.Domain.csproj", "{4179916F-5098-424F-9568-18AFCCE79541}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,5 +46,17 @@ Global
 		{9A281CD2-8BD8-4709-AFF0-36064213DEFA}.Release|x64.Build.0 = Release|Any CPU
 		{9A281CD2-8BD8-4709-AFF0-36064213DEFA}.Release|x86.ActiveCfg = Release|Any CPU
 		{9A281CD2-8BD8-4709-AFF0-36064213DEFA}.Release|x86.Build.0 = Release|Any CPU
+		{4179916F-5098-424F-9568-18AFCCE79541}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4179916F-5098-424F-9568-18AFCCE79541}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4179916F-5098-424F-9568-18AFCCE79541}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{4179916F-5098-424F-9568-18AFCCE79541}.Debug|x64.Build.0 = Debug|Any CPU
+		{4179916F-5098-424F-9568-18AFCCE79541}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{4179916F-5098-424F-9568-18AFCCE79541}.Debug|x86.Build.0 = Debug|Any CPU
+		{4179916F-5098-424F-9568-18AFCCE79541}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4179916F-5098-424F-9568-18AFCCE79541}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4179916F-5098-424F-9568-18AFCCE79541}.Release|x64.ActiveCfg = Release|Any CPU
+		{4179916F-5098-424F-9568-18AFCCE79541}.Release|x64.Build.0 = Release|Any CPU
+		{4179916F-5098-424F-9568-18AFCCE79541}.Release|x86.ActiveCfg = Release|Any CPU
+		{4179916F-5098-424F-9568-18AFCCE79541}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
