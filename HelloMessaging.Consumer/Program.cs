@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using GreenPipes;
 using HelloMessaging.Domain;
 using MassTransit;
 using Microsoft.Extensions.Hosting;
@@ -42,6 +43,7 @@ namespace HelloMessaging.Consumer
                             config.Host("amqp://guest:guest@localhost:5672");
                             config.ReceiveEndpoint("chat-service", c =>
                             {
+                                c.UseMessageRetry(c => c.Incremental(5, TimeSpan.FromMilliseconds(500), TimeSpan.FromMilliseconds(500)));
                                 c.ConfigureConsumer<ChatMessageConsumer>(context);
                             });
                         });
