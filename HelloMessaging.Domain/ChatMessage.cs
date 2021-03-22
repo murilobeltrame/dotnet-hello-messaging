@@ -1,7 +1,7 @@
 ﻿namespace HelloMessaging.Domain
 {
-    public class ChatMessage
+    public interface IChatMessage
     {
-        public string Text { get; set; }
+        string Text { get; set; }
     }
 }

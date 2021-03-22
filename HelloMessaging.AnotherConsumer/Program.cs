@@ -52,13 +52,13 @@ namespace HelloMessaging.AnotherConsumer
             });
     }
 
-    class ChatMessageConsumer : IConsumer<ChatMessage>
+    class ChatMessageConsumer : IConsumer<IChatMessage>
     {
         private readonly ILogger<ChatMessageConsumer> _logger;
 
         public ChatMessageConsumer(ILogger<ChatMessageConsumer> logger) => _logger = logger;
 
-        public Task Consume(ConsumeContext<ChatMessage> context)
+        public Task Consume(ConsumeContext<IChatMessage> context)
         {
             var messageText = context.Message.Text;
             if (messageText.Contains("error", StringComparison.InvariantCultureIgnoreCase)) throw new Exception(messageText);

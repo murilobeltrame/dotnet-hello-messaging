@@ -41,9 +41,11 @@ namespace HelloMessaging.Consumer
                         configuration.UsingRabbitMq((context, config) =>
                         {
                             config.Host("amqp://guest:guest@localhost:5672");
+                            config.UseMessageScheduler(new Uri("rabbitmq://localhost/quartz"));
                             config.ReceiveEndpoint("chat-service", c =>
                             {
                                 c.UseMessageRetry(c => c.Incremental(5, TimeSpan.FromMilliseconds(500), TimeSpan.FromMilliseconds(500)));
+                                c.UseScheduledRedelivery(c => c.Intervals(TimeSpan.FromMinutes(2.5), TimeSpan.FromMinutes(5), TimeSpan.FromMinutes(10)));
                                 c.ConfigureConsumer<ChatMessageConsumer>(context);
                             });
                         });
@@ -52,13 +54,13 @@ namespace HelloMessaging.Consumer
             });
     }
 
-    class ChatMessageConsumer : IConsumer<ChatMessage>
+    class ChatMessageConsumer : IConsumer<IChatMessage>
     {
         private readonly ILogger<ChatMessageConsumer> _logger;
 
         public ChatMessageConsumer(ILogger<ChatMessageConsumer> logger) => _logger = logger;
 
-        public Task Consume(ConsumeContext<ChatMessage> context)
+        public Task Consume(ConsumeContext<IChatMessage> context)
         {
             var messageText = context.Message.Text;
             if (messageText.Contains("error", StringComparison.InvariantCultureIgnoreCase)) throw new Exception(messageText);

@@ -31,7 +31,7 @@ namespace HelloMessaging.Producer
 
                 if ("quit".Equals(value, StringComparison.OrdinalIgnoreCase)) break;
 
-                await sender.Publish(new ChatMessage { Text = value });
+                await sender.Publish<IChatMessage>(new { Text = value });
             }
         }
 
